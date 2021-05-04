@@ -1,12 +1,18 @@
 package br.com.zupacademy.rafaela.mercadolivre.User;
 
+import br.com.zupacademy.rafaela.mercadolivre.config.validation.UniqueValue;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="users")
+@Table(
+        name="users",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "username_unique", columnNames = "username")
+        }
+)
 public class User {
     @Id
     @GeneratedValue(
